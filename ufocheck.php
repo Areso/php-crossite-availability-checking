@@ -19,8 +19,10 @@ if (!mysqli_set_charset($conn, "utf8")) {
 } else {
   //  printf("Current character set: %s\n", mysqli_character_set_name($conn));
 }
-$LowBorder = ($_POST["name"]-1)*100;
+$LowBorder  = ($_POST["name"]-1)*100;
 $HighBorder = ($_POST["name"])*100;
+//$LowBorder  = 0;
+//$HighBorder = 400;
 $query_line = "SELECT 
 oc_product.product_id, model, oc_product.quantity, oc_product.status
 FROM oc_product
@@ -44,9 +46,9 @@ while($row = mysqli_fetch_array($query)) {
 		
 		if ($i==1) {
 			$model_id	= $row[mysqli_fetch_field_direct($query, $i)->name];
-			//echo $model_id;
-			//echo '
-			//		';            
+			echo $model_id;
+			echo '
+					';            
 			array_push($MyArrayOfAvailItems, $model_id);	
 		}
 	}	
@@ -56,13 +58,14 @@ while($row = mysqli_fetch_array($query)) {
 echo $MyArrayOfAvailItems[0];
 echo '
 					';
+*/
 echo sizeof($MyArrayOfAvailItems);
 echo '
 					';
-*/
+
 $MyArrayOfFindedItems=array();
-//$item_container = "bx_catalog_item_container";
-$item_container = "Сожалеем";
+$item_container2 = "no_photo";
+$item_container  = "Сожалеем";
 /* Convert, target encoding, source encoding*/
 $item_container = mb_convert_encoding($item_container, "windows-1251", "utf-8");
 
@@ -70,6 +73,7 @@ function populateArray2($model, $data) {
 	global $model;
 	global $data;
 	global $item_container;
+	global $item_container2;
 	global $recurse;
 	global $MyArrayOfFindedItems;
 	/*
@@ -84,6 +88,20 @@ function populateArray2($model, $data) {
 	$pos = strpos($data, $item_container);
 	//echo $pos;
 	if ($pos !== false) {
+		array_push($MyArrayOfFindedItems, $model);
+		echo "not found at all model ".$model."\n";		
+		//echo $model;
+		//echo ' 
+		//		';
+		//$recurse = 1;	
+		//populateArray2($model, $data, $recurse);
+	} else {
+		//echo 'not found';
+	}
+	$pos2 = strpos($data, $item_container2);
+	//echo $pos;
+	if ($pos2 !== false) {
+		echo "not available model ".$model."\n";		
 		array_push($MyArrayOfFindedItems, $model);
 		//echo $model;
 		//echo ' 
@@ -117,9 +135,10 @@ echo '
 //echo memory_get_usage(true)."\n";
 //echo memory_get_peak_usage(true)."\n";
 //echo sizeof($MyArrayOfFindedItems);
-
+/*
 foreach ($MyArrayOfFindedItems as $checkit) {
     echo '
 					';
 	echo $checkit;	
 }
+*/

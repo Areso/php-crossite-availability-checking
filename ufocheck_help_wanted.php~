@@ -12,27 +12,27 @@ set_time_limit(600);
 
 $MyArrayOfAvailItems=array();
 
-    for($i = 0; $i < 30; $i++) {
+    for($i = 0; $i < 200; $i++) {
 		
 		
-		if ($i==1) {
+		
 			$model_id	= 5000+$i;
 			//echo $model_id;
 			//echo '
 			//		';            
 			array_push($MyArrayOfAvailItems, $model_id);	
-		}
+		
 	}	
 		
 
-/*
+
 echo $MyArrayOfAvailItems[0];
 echo '
 					';
 echo sizeof($MyArrayOfAvailItems);
 echo '
 					';
-*/
+
 $MyArrayOfFindedItems=array();
 //$item_container = "bx_catalog_item_container";
 $item_container = "Сожалеем";
