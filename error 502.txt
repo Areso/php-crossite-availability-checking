@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset='utf-8'> 
+    <title>Error 502 - Bad Gateway</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.c9.io/errors/style.css" />
+    <style type="text/css">
+    .error_content {
+        background: rgba(255, 255, 255, 0.23);
+        padding: 10px;
+        width: 641px;
+        margin: 25px 0;
+        display: none;
+    }
+    
+    #error-msg {
+        display: block;
+    }
+    </style>
+  </head>
+  <body class="errorUnknown light">
+    <div id="wrapper">
+      <h1>Error 502 - Bad Gateway</h1>
+      <div class="error_content" id="error-msg">
+          <p>Please click <a href="javascript:location.reload(true)">here</a> to try again, if the issue persists please contact <a href="https://c9.io/support">support</a></p>
+      </div>
+      
+      <a href="http://status.c9.io">Status Page</a> |
+      <a href="https://c9.io/support">Support</a> |
+      <a href="https://c9.io/dashboard.html">Dashboard</a> |
+      <a href="https://c9.io">Home</a>
+    </div>
+  </body>
+</html>

@@ -19,8 +19,8 @@ if (!mysqli_set_charset($conn, "utf8")) {
 } else {
   //  printf("Current character set: %s\n", mysqli_character_set_name($conn));
 }
-$LowBorder  = ($_POST["name"]-1)*200;
-$HighBorder = ($_POST["name"])*200;
+$LowBorder  = ($_POST["name"]-1)*100;
+$HighBorder = ($_POST["name"])*100;
 //$LowBorder  = 0;
 //$HighBorder = 400;
 $query_line = "SELECT 
@@ -33,7 +33,6 @@ WHERE oc_product.manufacturer_id = 8 && oc_product.status = 1
 //&& oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder.
 //echo $query_line;
 echo "<html><body>";
-
 $query = mysqli_query($conn, $query_line);
 
 $field = mysqli_field_count($conn);
