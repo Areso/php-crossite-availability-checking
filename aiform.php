@@ -19,19 +19,20 @@ if (!mysqli_set_charset($conn, "utf8")) {
 } else {
   //  printf("Current character set: %s\n", mysqli_character_set_name($conn));
 }
-$LowBorder  = ($_POST["name"]-1)*100;
-$HighBorder = ($_POST["name"])*100;
-//$LowBorder  = 0;
-//$HighBorder = 400;
+//$LowBorder  = ($_POST["name"]-1)*100;
+//$HighBorder = ($_POST["name"])*100;
+$LowBorder  = 1440;
+$HighBorder = 1442;
 $query_line = "SELECT 
  oc_product.product_id, model, oc_product.quantity, oc_product.status
  FROM oc_product
  WHERE (oc_product.manufacturer_id = 15 ||
  oc_product.manufacturer_id = 17 ||
  oc_product.manufacturer_id = 16) &&
- oc_product.status = 1 && 
  oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder. 
-" ORDER BY oc_product.product_id";
+ "&& oc_product.status = 1 
+ ORDER BY oc_product.product_id";
+// oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder.
 //echo $query_line;
 $query = mysqli_query($conn, $query_line);
 
@@ -103,13 +104,13 @@ function populateArray2($model, $data) {
 }
 foreach ($MyArrayOfAvailItems as $model) {
     //$item_id = 5121;
-	//echo $model;
-	//echo '
-	//				';
+	echo $model;
+	echo '
+					';
 	$data = file_get_contents('https://ufopeople.ru/catalog/?q='.$model);
-	//echo $data;
-	//echo '
-	//				';
+	echo $data;
+	echo '
+					';
 	$recurse = 0;	
 	populateArray2($model, $data);
 	
