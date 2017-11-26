@@ -24,13 +24,15 @@ $HighBorder = ($_POST["name"])*100;
 //$LowBorder  = 0;
 //$HighBorder = 400;
 $query_line = "SELECT 
-oc_product.product_id, model, oc_product.quantity, oc_product.status
-FROM oc_product
-WHERE oc_product.manufacturer_id = 8 && oc_product.status = 1 
- && oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder.
- " ORDER BY oc_product.product_id";
- //echo $query_line;
-//&& oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder.
+ oc_product.product_id, model, oc_product.quantity, oc_product.status
+ FROM oc_product
+ WHERE (oc_product.manufacturer_id = 11 ||
+ oc_product.manufacturer_id = 12 ||
+ oc_product.manufacturer_id = 13) &&
+ oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder. 
+ "&& oc_product.status = 1 
+ ORDER BY oc_product.product_id";
+// oc_product.product_id > ".$LowBorder." && oc_product.product_id < ".$HighBorder.
 //echo $query_line;
 echo "<html><body>";
 $query = mysqli_query($conn, $query_line);
@@ -80,16 +82,6 @@ function populateArray2($model, $data) {
 	} else {
 		//echo 'not found';
 	}
-	$pos2 = strpos($data, $item_container2);
-	if ($pos2 !== false) {
-		echo "<br>";
-		echo " not available model ".$model;		
-		array_push($MyArrayOfFindedItems, $model);
-		//$recurse = 1;	
-		//populateArray2($model, $data, $recurse);
-	} else {
-		//echo 'not found';
-	} 
 }
 foreach ($MyArrayOfAvailItems as $model) {
 	$data = file_get_contents('http://winner-bagz.ru/catalog/?q='.$model);
